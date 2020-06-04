@@ -2,8 +2,10 @@ package com.example.Rentit;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,4 +52,11 @@ public class home extends AppCompatActivity {
                     return true;
                 }
             };
+
+    public void ViewProperty(View view) {
+        startActivity(new Intent(this,CRUD_R.class));
+    }
+    public void UploadProperty(View view) {
+        startActivity(new Intent(this,CRUD_C.class));
+    }
 }
