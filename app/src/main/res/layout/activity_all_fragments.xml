@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".AllFragments">
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -18,9 +17,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/bottom_navigation"
-        android:background="#cff"
+        android:background="#0F6767"
         android:layout_alignParentBottom="true"
         app:menu="@menu/navigation"/>
-
 
 </RelativeLayout>

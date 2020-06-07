@@ -8,9 +8,46 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:350429482490:android:c645b868df80b0fa2b6843",
+        "mobilesdk_app_id": "1:350429482490:android:6fa30b9d4eb4d3692b6843",
         "android_client_info": {
           "package_name": "com.example.Rentit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350429482490-74lh4ujlcudlu2f596uol4usn9qa9fj3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.Rentit",
+            "certificate_hash": "21a47ed8c3b84ccd9aa0a2cf01bf75fca5b1ce8f"
+          }
+        },
+        {
+          "client_id": "350429482490-i2bvdr0ms649bhr00q9d9dqte8vae7pl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDGWxw8fPfQL8PqeYl-dZ-6L8fTDoL1Ias"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "350429482490-i2bvdr0ms649bhr00q9d9dqte8vae7pl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350429482490:android:c645b868df80b0fa2b6843",
+        "android_client_info": {
+          "package_name": "com.example.rentit"
         }
       },
       "oauth_client": [

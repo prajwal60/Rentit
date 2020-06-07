@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.Rentit.CRUD_C"
-    android:background="@color/login_bk_color"
-    android:focusableInTouchMode="true"
-    android:gravity="center"
-    android:layout_gravity="center">
+    tools:context=".UploadPropertyHere">
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,7 +27,7 @@
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     style="@style/viewParent.headerText.NoMode"
-                    android:text="Upload if \n You Have\n Vacant Property"/>
+                    android:text="upload your\nvacant\nproperty detail"/>
 
                 <ImageView
                     android:layout_width="177dp"
@@ -46,58 +43,19 @@
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
                 <EditText
-                    android:id="@+id/editTextName"
+                    android:id="@+id/RoomContactName"
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="Contact Name"/>
+                    android:hint="Owner Name"/>
             </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLocation"
-                style="@style/parent"
-                android:layout_marginTop="@dimen/loginViewsMargin">
-
-                <EditText
-                    android:id="@+id/editTextLocation"
-                    style="@style/modifiedEditText"
-                    android:hint="Location"
-                    android:inputType="text"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/textInputStreet"-->
-<!--                style="@style/parent"-->
-<!--                android:layout_marginTop="@dimen/loginViewsMargin">-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/editTextStreet"-->
-<!--                    style="@style/modifiedEditText"-->
-<!--                    android:hint="Street"-->
-<!--                    android:inputType="text"-->
-<!--                    android:maxLines="1" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/textInputAreacode"-->
-<!--                style="@style/parent"-->
-<!--                android:layout_marginTop="@dimen/loginViewsMargin">-->
-
-<!--                <EditText-->
-<!--                    android:id="@+id/editTextAreacode"-->
-<!--                    style="@style/modifiedEditText"-->
-<!--                    android:hint="Area Code"-->
-<!--                    android:inputType="text"-->
-<!--                    android:maxLines="1" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputContact"
                 style="@style/parent"
                 android:layout_marginTop="@dimen/loginViewsMargin">
                 <EditText
-                    android:id="@+id/editTextContact"
+                    android:id="@+id/RoomContactNumber"
                     style="@style/modifiedEditText"
                     android:inputType="phone"
                     android:maxLines="1"
@@ -110,15 +68,28 @@
                 android:scaleType="centerInside"
                 android:layout_gravity="center"
                 android:src="@mipmap/ic_launcher"
-                android:id="@+id/image_added"/>
+                android:id="@+id/RoomPhoto"/>
 
 
             <Button
-                android:id="@+id/btnChoose"
+                android:id="@+id/choosephoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Choose" />
+                android:text="Choose Property Photo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLocation"
+                style="@style/parent"
+                android:layout_marginTop="@dimen/loginViewsMargin">
+
+                <EditText
+                    android:id="@+id/RoomLocation"
+                    style="@style/modifiedEditText"
+                    android:hint="Location"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputDescription"
@@ -126,16 +97,13 @@
                 android:layout_marginTop="@dimen/loginViewsMargin">
 
                 <EditText
-                    android:id="@+id/editTextDescription"
+                    android:id="@+id/RoomDescription"
                     style="@style/modifiedEditText"
                     android:layout_height="44dp"
                     android:hint="Description"
                     android:inputType="textLongMessage|textWebEditText|textMultiLine|textFilter|text"
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-
 
             <ProgressBar
                 android:id="@+id/progress_bar"
@@ -147,7 +115,7 @@
                 android:visibility="gone" />
 
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-                android:id="@+id/cirUploadBtn"
+                android:id="@+id/postroom"
                 style="@style/loginButton"
                 app:spinning_bar_width="4dp"
                 app:spinning_bar_color="#FFF"
@@ -155,7 +123,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/loginViewsMargin"
                 app:spinning_bar_padding="6dp"
-                app:initialCornerAngle="27dp"/>
+                app:initialCornerAngle="27dp"
+                android:onClick="postProperty"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -168,5 +137,6 @@
 
         </LinearLayout>
     </ScrollView>
+
 
 </RelativeLayout>

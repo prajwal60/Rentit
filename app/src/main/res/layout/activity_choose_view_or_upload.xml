@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChooseViewOrUpload">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/choosingpageimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="348dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_home_home" />
+
+                <TextView
+                    android:layout_below="@+id/choosingpageimage"
+                    style="@style/viewParent.headerText.NoMode"
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text=" Let’s explore something new!"
+                    android:textColor="@color/colorPrimaryDark" />
+
+<!--                <ImageView-->
+<!--                    android:layout_width="235dp"-->
+<!--                    android:layout_height="150dp"-->
+<!--                    android:layout_alignParentTop="true"-->
+<!--                    android:layout_alignParentRight="true"-->
+<!--                    android:layout_toRightOf="@+id/exploretext"-->
+<!--                    android:src="@drawable/ic_search_hero" />-->
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                    android:id="@+id/view_property"
+                    style="@style/loginButton"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:onClick="ViewProperty"
+                    android:text="View property"
+                    app:initialCornerAngle="27dp"
+                    app:spinning_bar_color="#FFF"
+                    app:spinning_bar_padding="6dp"
+                    app:spinning_bar_width="4dp" />
+
+
+                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                    android:id="@+id/upload_property"
+                    style="@style/loginButton"
+                    android:layout_below="@+id/view_property"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:onClick="UploadProperty"
+                    android:text="Upload Property"
+                    app:initialCornerAngle="27dp"
+                    app:spinning_bar_color="#FFF"
+                    app:spinning_bar_padding="6dp"
+                    app:spinning_bar_width="4dp" />
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

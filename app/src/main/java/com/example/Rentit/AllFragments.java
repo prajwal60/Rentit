@@ -1,30 +1,31 @@
 package com.example.Rentit;
 
-
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class home extends AppCompatActivity {
+public class AllFragments extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_all_fragments);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new home_fragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FragmentHome()).commit();
 
     }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -32,19 +33,14 @@ public class home extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
-                            selectedFragment = new home_fragment() ;
+                            selectedFragment = new FragmentHome() ;
                             break;
-                        case R.id.nav_message:
-                            selectedFragment = new message_fragment() ;
-                            break;
-                        case R.id.nav_search:
-                            selectedFragment = new search_fragment() ;
-                            break;
+
                         case R.id.nav_notification:
-                            selectedFragment = new notification_fragment() ;
+                            selectedFragment = new FragmentNotification() ;
                             break;
                         case R.id.nav_setting:
-                            selectedFragment = new setting_fragment() ;
+                            selectedFragment = new FragmentSetting() ;
                             break;
 
                     }
@@ -53,10 +49,4 @@ public class home extends AppCompatActivity {
                 }
             };
 
-    public void ViewProperty(View view) {
-        startActivity(new Intent(this,CRUD_R.class));
-    }
-    public void UploadProperty(View view) {
-        startActivity(new Intent(this,CRUD_C.class));
-    }
 }
