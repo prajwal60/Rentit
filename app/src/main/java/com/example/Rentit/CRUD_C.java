@@ -60,6 +60,8 @@ public class CRUD_C extends AppCompatActivity {
 
         Name =  findViewById(R.id.editTextName);
         Location =  findViewById(R.id.editTextLocation);
+        area =  findViewById(R.id.editTextAreacode);
+        Street =  findViewById(R.id.editTextStreet);
         Description =  findViewById(R.id.editTextDescription);
         Contact =  findViewById(R.id.editTextContact);
         Picture =  findViewById(R.id.image_added);
@@ -135,7 +137,7 @@ public class CRUD_C extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(CRUD_C.this, "BHOSDIKE", Toast.LENGTH_LONG).show();
-//                                    startActivity(new Intent(CRUD_C.this,CRUD_R.class));
+                                    startActivity(new Intent(CRUD_C.this,CRUD_R.class));
                                 }
 
                             });

@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
 
-    String USERNAME = "";
-    String PASSWORD = "";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        //check if the user is logged in or not
-        //if user is logged in then allow him to move ahead
-        SessionManagement sessionManagement = new SessionManagement(MainActivity.this);
-        String UserID = sessionManagement.getSession();
-        if (UserID!="null"){
-            // user is logged in and so allowed to move ahead
-            startActivity(new Intent(MainActivity.this,ChooseViewOrUpload.class));
-        }
-
-    }
 
     public void newRegistration(View view) {
         startActivity(new Intent(this, Registration.class));
@@ -63,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
     public void validation(View view) {
         progressBar.setVisibility(View.VISIBLE);
 
-        USERNAME = username.getText().toString().trim();
-        PASSWORD = password.getText().toString().trim();
+        String USERNAME = username.getText().toString().trim();
+        String PASSWORD = password.getText().toString().trim();
 
         if ((USERNAME.isEmpty()) && (PASSWORD.isEmpty())) {
             Toast.makeText(this, "Please insert Username & Password", Toast.LENGTH_SHORT).show();
@@ -84,21 +69,13 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 progressBar.setVisibility(View.GONE);
                                 // Sign in success, update UI with the signed-in user's information
-
-                                LoginUser loginUser = new LoginUser(USERNAME,PASSWORD);
-
-                                SessionManagement sessionManagement = new SessionManagement(MainActivity.this);
-                                sessionManagement.saveSession(loginUser);
-
                                 Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(MainActivity.this,ChooseViewOrUpload.class);
-                                startActivity(intent);
-
+                                startActivity(new Intent(MainActivity.this,home.class));
 
                             } else {
                                 progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user.
-                                Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Login UnSuccess", Toast.LENGTH_SHORT).show();
 
                             }
 

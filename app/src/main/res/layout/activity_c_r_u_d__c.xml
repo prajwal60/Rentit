@@ -26,7 +26,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/uploadtext"
                     android:layout_centerVertical="true"
                     android:layout_alignParentLeft="true"
                     style="@style/viewParent.headerText.NoMode"
@@ -35,7 +34,6 @@
                 <ImageView
                     android:layout_width="177dp"
                     android:layout_height="184dp"
-                    android:layout_toRightOf="@+id/uploadtext"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_register_hero" />
@@ -50,7 +48,7 @@
                     style="@style/modifiedEditText"
                     android:inputType="text"
                     android:maxLines="1"
-                    android:hint="Contact Name"/>
+                    android:hint="Full Name"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -66,31 +64,31 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/textInputStreet"-->
-<!--                style="@style/parent"-->
-<!--                android:layout_marginTop="@dimen/loginViewsMargin">-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputStreet"
+                style="@style/parent"
+                android:layout_marginTop="@dimen/loginViewsMargin">
 
-<!--                <EditText-->
-<!--                    android:id="@+id/editTextStreet"-->
-<!--                    style="@style/modifiedEditText"-->
-<!--                    android:hint="Street"-->
-<!--                    android:inputType="text"-->
-<!--                    android:maxLines="1" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
+                <EditText
+                    android:id="@+id/editTextStreet"
+                    style="@style/modifiedEditText"
+                    android:hint="Street"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                android:id="@+id/textInputAreacode"-->
-<!--                style="@style/parent"-->
-<!--                android:layout_marginTop="@dimen/loginViewsMargin">-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputAreacode"
+                style="@style/parent"
+                android:layout_marginTop="@dimen/loginViewsMargin">
 
-<!--                <EditText-->
-<!--                    android:id="@+id/editTextAreacode"-->
-<!--                    style="@style/modifiedEditText"-->
-<!--                    android:hint="Area Code"-->
-<!--                    android:inputType="text"-->
-<!--                    android:maxLines="1" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
+                <EditText
+                    android:id="@+id/editTextAreacode"
+                    style="@style/modifiedEditText"
+                    android:hint="Area Code"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInputContact"
@@ -163,6 +161,12 @@
                 android:weightSum="12"
                 android:gravity="center"
                 android:layout_marginTop="30dp">
+
+
+
+
+
+
 
             </LinearLayout>
 
