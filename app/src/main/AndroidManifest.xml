@@ -3,7 +3,7 @@
     package="com.example.Rentit">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
@@ -13,11 +13,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.Rentit.CRUD_R"></activity>
+        <activity android:name=".UploadPropertyHere"></activity>
+        <activity android:name=".AdvancedPage" />
+        <activity android:name=".Update" />
+        <activity android:name=".CRUD_R" />
         <activity android:name=".CRUD_C" />
         <activity android:name=".index" />
-        <activity android:name=".home" />
         <activity android:name=".Registration" />
+        <activity android:name=".ChooseViewOrUpload" />
+        <activity android:name=".HomeScreen" />
+        <activity android:name=".DisplayCode" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

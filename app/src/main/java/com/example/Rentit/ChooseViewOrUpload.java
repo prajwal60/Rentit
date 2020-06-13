@@ -1,7 +1,5 @@
 package com.example.Rentit;
 
-
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -13,16 +11,17 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class home extends AppCompatActivity {
+public class ChooseViewOrUpload extends AppCompatActivity {
 
+    String UserID;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.fragment_home);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new home_fragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new fragment_home()).commit();
 
     }
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -32,13 +31,7 @@ public class home extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (menuItem.getItemId()){
                         case R.id.nav_home:
-                            selectedFragment = new home_fragment() ;
-                            break;
-                        case R.id.nav_message:
-                            selectedFragment = new message_fragment() ;
-                            break;
-                        case R.id.nav_search:
-                            selectedFragment = new search_fragment() ;
+                            selectedFragment = new Fragment();
                             break;
                         case R.id.nav_notification:
                             selectedFragment = new notification_fragment() ;
@@ -52,11 +45,22 @@ public class home extends AppCompatActivity {
                     return true;
                 }
             };
-
     public void ViewProperty(View view) {
-        startActivity(new Intent(this,CRUD_R.class));
+
+        Intent jumptoviewpropertydetails = new Intent(getApplicationContext(),HomeScreen.class );
+        startActivity(jumptoviewpropertydetails);
     }
+
     public void UploadProperty(View view) {
-        startActivity(new Intent(this,CRUD_C.class));
+        Intent jumptouploadpropertydetails= new Intent(this,UploadPropertyHere.class);
+        startActivity(jumptouploadpropertydetails);
     }
+
+
+
+
 }
+
+
+
+

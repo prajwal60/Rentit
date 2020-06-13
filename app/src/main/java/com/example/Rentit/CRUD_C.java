@@ -60,8 +60,6 @@ public class CRUD_C extends AppCompatActivity {
 
         Name =  findViewById(R.id.editTextName);
         Location =  findViewById(R.id.editTextLocation);
-        area =  findViewById(R.id.editTextAreacode);
-        Street =  findViewById(R.id.editTextStreet);
         Description =  findViewById(R.id.editTextDescription);
         Contact =  findViewById(R.id.editTextContact);
         Picture =  findViewById(R.id.image_added);

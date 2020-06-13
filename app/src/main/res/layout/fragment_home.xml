@@ -1,80 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_margin="5dp"
+
     android:background="@color/register_bk_color"
     android:focusableInTouchMode="true"
-    tools:context=".MainActivity">
+    tools:context=".ChooseViewOrUpload">
 
-
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
 
-        <TextView
-            style="@style/viewParent.headerText.NoMode"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:text=" Let’s\n explore \n something\n new with us! "
-            android:textColor="@color/whiteTextColor" />
+        >
 
-        <ImageView
-            android:layout_width="237dp"
-            android:layout_height="149dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_search_hero" />
 
-    </RelativeLayout>
-
-    <androidx.cardview.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="181dp"
-        android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/whiteTextColor"
-        app:cardCornerRadius="10dp">
+        android:layout_height="match_parent">
 
-        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-            android:id="@+id/view_property"
-            style="@style/loginButton"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="@dimen/loginViewsMargin"
-            android:onClick="ViewProperty"
-            android:text="View property"
-            app:initialCornerAngle="27dp"
-            app:spinning_bar_color="#FFF"
-            app:spinning_bar_padding="6dp"
-            app:spinning_bar_width="4dp" />
-
-
-        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-            android:id="@+id/upload_property"
-            style="@style/loginButton"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="@dimen/loginViewsMargin"
-            android:onClick="UploadProperty"
-            android:text="Upload Property"
-            app:initialCornerAngle="27dp"
-            app:spinning_bar_color="#FFF"
-            app:spinning_bar_padding="6dp"
-            app:spinning_bar_width="4dp" />
+            android:orientation="vertical">
 
-    </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <ImageView
+                <ImageView
+                    android:id="@+id/choosingpageimage"
+                    android:layout_width="match_parent"
+                    android:layout_height="348dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_home_home" />
+
+                <TextView
+                    android:layout_below="@+id/choosingpageimage"
+                    style="@style/viewParent.headerText.NoMode"
+                    android:layout_width="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text=" Let’s explore something new!"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <!--                <ImageView-->
+                <!--                    android:layout_width="235dp"-->
+                <!--                    android:layout_height="150dp"-->
+                <!--                    android:layout_alignParentTop="true"-->
+                <!--                    android:layout_alignParentRight="true"-->
+                <!--                    android:layout_toRightOf="@+id/exploretext"-->
+                <!--                    android:src="@drawable/ic_search_hero" />-->
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                    android:id="@+id/view_property"
+                    style="@style/loginButton"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:onClick="ViewProperty"
+                    android:text="View property"
+                    app:initialCornerAngle="27dp"
+                    app:spinning_bar_color="#FFF"
+                    app:spinning_bar_padding="6dp"
+                    app:spinning_bar_width="4dp"
+                    tools:ignore="OnClick" />
+
+
+                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                    android:id="@+id/upload_property"
+                    style="@style/loginButton"
+                    android:layout_below="@+id/view_property"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:onClick="UploadProperty"
+                    android:text="Upload Property"
+                    app:initialCornerAngle="27dp"
+                    app:spinning_bar_color="#FFF"
+                    app:spinning_bar_padding="6dp"
+                    app:spinning_bar_width="4dp"
+                    tools:ignore="OnClick" />
+
+            </RelativeLayout>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+    </FrameLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
-        android:layout_height="348dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_margin="5dp"
-        android:src="@drawable/ic_home_home" />
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        android:background="#cff"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/navigation"/>
 
 
-</LinearLayout>
+</RelativeLayout>

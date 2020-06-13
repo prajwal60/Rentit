@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                                 progressBar.setVisibility(View.GONE);
                                 // Sign in success, update UI with the signed-in user's information
                                 Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(MainActivity.this,home.class));
+                                startActivity(new Intent(MainActivity.this,ChooseViewOrUpload.class));
 
                             } else {
                                 progressBar.setVisibility(View.GONE);

@@ -5,16 +5,16 @@
         android:icon="@drawable/ic_home_black_24dp"
         android:title="Home"
         />
-    <item
-        android:id="@+id/nav_search"
-        android:icon="@drawable/ic_search_black_24dp"
-        android:title="Search"
-        />
-    <item
-        android:id="@+id/nav_message"
-        android:icon="@drawable/ic_message_black_24dp"
-        android:title="Messages"
-        />
+<!--    &lt;!&ndash;    <item&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:id="@+id/nav_search"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:icon="@drawable/ic_search_black_24dp"&ndash;&gt;-->
+<!--    &lt;!&ndash;        android:title="Search"&ndash;&gt;-->
+<!--    &lt;!&ndash;        />&ndash;&gt;-->
+<!--    &lt;!&ndash;    <item&ndash;&gt;-->
+<!--    android:id="@+id/nav_message"-->
+<!--    android:icon="@drawable/ic_message_black_24dp"-->
+<!--    android:title="Messages"-->
+<!--    />-->
     <item
         android:id="@+id/nav_notification"
         android:icon="@drawable/ic_notifications_black_24dp"
