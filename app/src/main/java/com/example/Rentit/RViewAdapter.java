@@ -39,10 +39,10 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolderC
                 Intent intent = new Intent(context,DummyPostDetail.class);
                 intent.putExtra("ownername",objectDatabaseModellist.get(holder.getAdapterPosition()).getFullname());
                 intent.putExtra("ownernumber",objectDatabaseModellist.get(holder.getAdapterPosition()).getContactnumber());
-                intent.putExtra("location",objectDatabaseModellist.get(holder.getAdapterPosition()).getLocation());
-                intent.putExtra("description",objectDatabaseModellist.get(holder.getAdapterPosition()).getDescription());
-                intent.putExtra("bookingcode",objectDatabaseModellist.get(holder.getAdapterPosition()).getBooking_code());
-                intent.putExtra("image",objectDatabaseModellist.get(holder.getAdapterPosition()).getPropertyimage());
+//                intent.putExtra("location",objectDatabaseModellist.get(holder.getAdapterPosition()).getLocation());
+//                intent.putExtra("description",objectDatabaseModellist.get(holder.getAdapterPosition()).getDescription());
+//                intent.putExtra("bookingcode",objectDatabaseModellist.get(holder.getAdapterPosition()).getBooking_code());
+//                intent.putExtra("image",objectDatabaseModellist.get(holder.getAdapterPosition()).getPropertyimage());
 
                 context.startActivity(intent);
             }
