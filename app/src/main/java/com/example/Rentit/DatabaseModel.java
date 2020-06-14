@@ -4,12 +4,15 @@ import android.graphics.Bitmap;
 
 public class DatabaseModel {
 
-    String Generated_code,Fullname, Contactnumber, location, Description;
+    String Generated_code,Booking_code,Fullname, Contactnumber, location, Description;
+
+    String Room_Booking_Code, Room_Booked_By;
 
     Bitmap Propertyimage;
 
-    public DatabaseModel(String fullname, String contactnumber, String location, String description, String generated_code, Bitmap propertyimage) {
+    public DatabaseModel( String fullname, String contactnumber, String location, String description, String generated_code, String booking_code, Bitmap propertyimage) {
         Generated_code = generated_code;
+        Booking_code = booking_code;
         Fullname = fullname;
         Contactnumber = contactnumber;
         this.location = location;
@@ -17,16 +20,25 @@ public class DatabaseModel {
         Propertyimage = propertyimage;
     }
 
-    public DatabaseModel(String fullname, String contactnumber,String description, String generated_code) {
-        Generated_code = generated_code;
-        Fullname = fullname;
-        Contactnumber = contactnumber;
-        Description = description;
+    public DatabaseModel(String room_booking_code, String room_Booked_By) {
+        Room_Booking_Code = room_booking_code;
+        Room_Booked_By = room_Booked_By;
     }
 
-    public DatabaseModel(String generated_code, String fullname) {
-        Generated_code = generated_code;
-        Fullname = fullname;
+    public String getRoom_Booking_Code() {
+        return Room_Booking_Code;
+    }
+
+    public void setRoom_Booking_Code(String room_Booking_Code) {
+        Room_Booking_Code = room_Booking_Code;
+    }
+
+    public String getRoom_Booked_By() {
+        return Room_Booked_By;
+    }
+
+    public void setRoom_Booked_By(String room_Booked_By) {
+        Room_Booked_By = room_Booked_By;
     }
 
     public String getGenerated_code() {
@@ -75,5 +87,13 @@ public class DatabaseModel {
 
     public void setPropertyimage(Bitmap propertyimage) {
         Propertyimage = propertyimage;
+    }
+
+    public String getBooking_code() {
+        return Booking_code;
+    }
+
+    public void setBooking_code(String booking_code) {
+        Booking_code = booking_code;
     }
 }

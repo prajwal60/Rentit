@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="590sp">
+    android:layout_height="500sp">
 
 
     <ScrollView
@@ -41,6 +41,35 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="7sp"
                     android:layout_toRightOf="@+id/posted_by_text"
+                    android:textColor="@android:color/primary_text_light_nodisable"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="5sp">
+
+                <TextView
+                    android:id="@+id/bookingcodetext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="2dp"
+                    android:text="Booking Code :"
+                    android:textColor="@android:color/widget_edittext_dark"
+                    android:textSize="23sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bookingcode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="7sp"
+                    android:layout_toRightOf="@+id/bookingcodetext"
                     android:textColor="@android:color/primary_text_light_nodisable"
                     android:textSize="23sp"
                     android:textStyle="bold" />
@@ -145,50 +174,50 @@
 
             </RelativeLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+            <!--            <RelativeLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="wrap_content">-->
 
-                <RelativeLayout
-                    android:id="@+id/updateanddelete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center">
+            <!--                <RelativeLayout-->
+            <!--                    android:id="@+id/updateanddelete"-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:gravity="center">-->
 
-                    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-                        android:id="@+id/update"
-                        style="@style/loginButton"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:onClick="updateThisPost"
-                        android:text="Update" />
+            <!--                    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
+            <!--                        android:id="@+id/update"-->
+            <!--                        style="@style/loginButton"-->
+            <!--                        android:layout_gravity="center_horizontal"-->
+            <!--                        android:layout_marginTop="@dimen/loginViewsMargin"-->
+            <!--                        android:onClick="updateThisPost"-->
+            <!--                        android:text="Update" />-->
 
-                    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-                        android:id="@+id/delete"
-                        style="@style/loginButton"
-                        android:layout_gravity="center_horizontal"
-                        android:layout_marginLeft="7sp"
-                        android:layout_marginTop="@dimen/loginViewsMargin"
-                        android:layout_toRightOf="@+id/update"
-                        android:onClick="deleteThisPost"
-                        android:text="Delete" />
+            <!--                    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
+            <!--                        android:id="@+id/delete"-->
+            <!--                        style="@style/loginButton"-->
+            <!--                        android:layout_gravity="center_horizontal"-->
+            <!--                        android:layout_marginLeft="7sp"-->
+            <!--                        android:layout_marginTop="@dimen/loginViewsMargin"-->
+            <!--                        android:layout_toRightOf="@+id/update"-->
+            <!--                        android:onClick="deleteThisPost"-->
+            <!--                        android:text="Delete" />-->
 
-                </RelativeLayout>
+            <!--                </RelativeLayout>-->
 
 
-                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-                    android:id="@+id/book"
-                    style="@style/loginButton"
-                    android:layout_below="@+id/updateanddelete"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="@dimen/loginViewsMargin"
-                    android:onClick="book"
-                    android:text="Book" />
-            </RelativeLayout>
+            <!--                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton-->
+            <!--                    android:id="@+id/bookthisroom"-->
+            <!--                    style="@style/loginButton"-->
+            <!--                    android:onClick="bookThisRoom"-->
+            <!--                    android:layout_centerHorizontal="true"-->
+            <!--                    android:layout_gravity="center_horizontal"-->
+            <!--                    android:layout_marginTop="@dimen/loginViewsMargin"-->
+            <!--                    android:text="Book" />-->
+            <!--            </RelativeLayout>-->
 
         </LinearLayout>
 
 
+
     </ScrollView>
-</RelativeLayout>
+</LinearLayout>

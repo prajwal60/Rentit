@@ -13,7 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UploadPropertyHere"></activity>
+        <activity android:name=".DeleteProperty"></activity>
+        <activity android:name=".DummyPostDetail" />
+        <activity android:name=".BookRoom" />
+        <activity android:name=".UploadPropertyHere" />
         <activity android:name=".AdvancedPage" />
         <activity android:name=".Update" />
         <activity android:name=".CRUD_R" />

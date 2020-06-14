@@ -1,8 +1,5 @@
 package com.example.Rentit;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -13,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 
@@ -30,7 +30,7 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
     DatabaseHandler objectDatabaseHandler;
 
 
-    String Generatedcode ;
+    String Generatedcode , Bookingcode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,13 +96,14 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
         if(!PropertyOwnerName.getText().toString().isEmpty() && !PropertyOwnerContact.getText().toString().isEmpty() && PropertyPhoto.getDrawable()!=null && !PropertyLocation.getText().toString().isEmpty() && !PropertyDescription.getText().toString().isEmpty() && bitmap!=null){
 
             Generatedcode = objectDatabaseHandler.generateAndCheckCode();
+            Bookingcode = objectDatabaseHandler.generatebookingCode();
 
             SPropertyOwnerName = PropertyOwnerName.getText().toString();
             SPropertyOwnerContact = PropertyOwnerContact.getText().toString();
             SPropertyLocation = PropertyLocation.getText().toString();
             SPropertyDescription = PropertyDescription.getText().toString();
 
-            objectDatabaseHandler.storePropertyDetail(new DatabaseModel(SPropertyOwnerName,SPropertyOwnerContact,SPropertyLocation,SPropertyDescription,Generatedcode,bitmap));
+            objectDatabaseHandler.storePropertyDetail(new DatabaseModel(SPropertyOwnerName,SPropertyOwnerContact,SPropertyLocation,SPropertyDescription,Generatedcode,Bookingcode,bitmap));
 
             Intent jumptodisplaycode = new Intent(this,DisplayCode.class);
             jumptodisplaycode.putExtra("Code",Generatedcode);

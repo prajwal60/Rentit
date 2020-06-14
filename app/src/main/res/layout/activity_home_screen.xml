@@ -7,16 +7,38 @@
     tools:context=".HomeScreen">
 
 
-    <Button
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Advanced options"
-        android:textSize="@dimen/headerTextSize"
-        android:textStyle="italic"
         android:id="@+id/movetoanotheractivity"
-        android:onClick="moveToAdvancedPage"
-        android:textColor="@color/common_google_signin_btn_text_dark_focused"
-        />
+        android:gravity="center">
+
+        <Button
+            android:layout_width="180sp"
+            android:layout_height="wrap_content"
+            android:text="Home"
+            android:textSize="@dimen/headerTextSize"
+            android:textStyle="italic"
+            android:id="@+id/movetofragment"
+            android:onClick="moveToFragment"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            />
+
+        <Button
+            android:layout_width="180sp"
+            android:layout_height="wrap_content"
+            android:text="options"
+            android:paddingLeft="10sp"
+            android:textSize="@dimen/headerTextSize"
+            android:layout_toRightOf="@+id/movetofragment"
+            android:textStyle="italic"
+            android:id="@+id/movetooptionactivity"
+            android:onClick="moveToAdvancedPage"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            />
+
+    </RelativeLayout>
+
 
     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
         android:id="@+id/search"

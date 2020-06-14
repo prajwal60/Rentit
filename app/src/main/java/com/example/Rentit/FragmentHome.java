@@ -52,20 +52,6 @@ public class FragmentHome extends Fragment {
         return rootview;
     }
 
-    public void refreshData(View view){
-        try {
-
-            objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.extractDataAndImages());
-            objectRecyclerView.setHasFixedSize(true);
-
-            objectRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            objectRecyclerView.setAdapter(objectRViewAdapter);
-        } catch (Exception e) {
-            Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

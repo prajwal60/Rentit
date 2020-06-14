@@ -3,6 +3,7 @@ package com.example.Rentit;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,22 +11,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HomeScreen extends AppCompatActivity {
+public class HomeScreen extends AppCompatActivity  implements View.OnClickListener  {
 
     DatabaseHandler objectDatabaseHandler;
     RecyclerView objectRecyclerView;
     RViewAdapter objectRViewAdapter;
 
 
+    Button bookroom;
     TextView Entered_Code;
     String CodeInstring;
 
+    TextView name, contact, location, description;
+    String Name, Contact, Location, Description;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
         extractingData();
+
+//        bookroom = (Button) findViewById(R.id.bookroom);
+//        bookroom.setOnClickListener(this);
 
     }
 
@@ -34,7 +41,7 @@ public class HomeScreen extends AppCompatActivity {
             objectRecyclerView = findViewById(R.id.RVdetails);
             objectDatabaseHandler = new DatabaseHandler(this);
 
-            objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.extractDataAndImages());
+            objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.extractDataAndImages(), this);
             objectRecyclerView.setHasFixedSize(true);
 
             objectRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -57,7 +64,7 @@ public class HomeScreen extends AppCompatActivity {
                 objectRecyclerView = findViewById(R.id.RVdetails);
                 objectDatabaseHandler = new DatabaseHandler(this);
 
-                objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.searchByCode(CodeInstring));
+                objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.searchByCode(CodeInstring), this);
                 objectRecyclerView.setHasFixedSize(true);
 
                 objectRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -69,7 +76,7 @@ public class HomeScreen extends AppCompatActivity {
     }
 
     public void deleteThisPost(View view) {
-        Intent jumptodeletepost = new Intent(HomeScreen.this, Delete.class);
+        Intent jumptodeletepost = new Intent(HomeScreen.this, DeleteProperty.class);
         startActivity(jumptodeletepost);
     }
 
@@ -88,5 +95,11 @@ public class HomeScreen extends AppCompatActivity {
     public void moveToAdvancedPage(View view) {
         Intent jumptoadvancedpage = new Intent(HomeScreen.this, AdvancedPage.class);
         startActivity(jumptoadvancedpage);
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent jumptobookingsection = new Intent(HomeScreen.this, BookRoom.class);
+        startActivity(jumptobookingsection);
     }
 }

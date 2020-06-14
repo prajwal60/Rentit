@@ -103,7 +103,7 @@ public class Update extends AppCompatActivity {
                 objectRecyclerView = findViewById(R.id.RVdetails);
                 objectDatabaseHandler = new DatabaseHandler(this);
 
-                objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.updateChoosedData(SUpdateownername,SUpdateownernumber,SUpdatelocation,SUpdatedescription,image_bitmap,SConfirmcode));
+                objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.updateChoosedData(SUpdateownername,SUpdateownernumber,SUpdatelocation,SUpdatedescription,image_bitmap,SConfirmcode),this);
                 Intent intent = new Intent(Update.this, HomeScreen.class);
                 startActivity(intent);
 

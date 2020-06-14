@@ -1,15 +1,16 @@
 package com.example.Rentit;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
+public class DeleteProperty extends AppCompatActivity {
 
-public class Delete extends AppCompatActivity {
 
     EditText owner, code;
     String Owner, Code;
@@ -21,7 +22,7 @@ public class Delete extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delete);
+        setContentView(R.layout.activity_delete_property);
 
         code = (EditText) findViewById(R.id.matchcodedelete);
         owner = (EditText) findViewById(R.id.ownernamedelete);
@@ -36,8 +37,8 @@ public class Delete extends AppCompatActivity {
             objectRecyclerView = findViewById(R.id.RVdetails);
             objectDatabaseHandler = new DatabaseHandler(this);
 
-            objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.deletePost(Owner,Code));
-            Intent intent = new Intent(Delete.this,HomeScreen.class);
+            objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.deletePost(Owner,Code),this);
+            Intent intent = new Intent(DeleteProperty.this,HomeScreen.class);
             startActivity(intent);
 
         } catch (Exception e) {
