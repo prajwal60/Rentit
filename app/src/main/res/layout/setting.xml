@@ -1,11 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#B5F4F8F7"
-    tools:context=".Logout">
+    android:background="@drawable/ic_home_home"
+    tools:context=".Notification">
 
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerHorizontal="true"
+    android:layout_centerVertical="true">
 
-</RelativeLayout>
+    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+        android:id="@+id/logOutOfTheApp"
+        style="@style/loginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="86dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="7sp"
+        android:layout_toRightOf="@+id/movetofragment"
+        android:onClick="logOutOfTheApp"
+        android:text="LogOut"
+        android:textSize="@dimen/headerTextSize"
+        android:textStyle="italic"
+        tools:ignore="OnClick" />
+
+</FrameLayout>
+
+</LinearLayout>

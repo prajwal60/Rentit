@@ -22,24 +22,10 @@ public class setting_fragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.setting, container, false);
-//                logoutbutton = (Button)getContext().findViewById(R.id.logOutOfTheApp);
-//        logoutbutton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                logOutOfTheApp();
-//            }
-//        });
 
         return view;
     }
 
-//
-//    public void logOutOfTheApp() {
-//        SharedPreferences sharedPreferences = getSharedPreferences("rememberkey",MODE_PRIVATE);
-//        sharedPreferences.edit().clear().commit();
-//        Toast.makeText(HomeScreen.this, "You are logged out", Toast.LENGTH_SHORT).show();
-//        startActivity(new Intent(HomeScreen.this, MainActivity.class));
-//        finish();
-//    }
+
 
 }

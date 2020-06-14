@@ -3,18 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Notification">
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Notification"
-        android:background="#fcc8"
-        android:gravity="center"
+        android:layout_height="214dp"
+        android:gravity="center">
 
-        />
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+            android:id="@+id/view_property"
+            style="@style/loginButton"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:onClick="ViewProperty"
+            android:text="View property"
+            app:initialCornerAngle="27dp"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="6dp"
+            app:spinning_bar_width="4dp"
+            tools:ignore="OnClick" />
 
+
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+            android:id="@+id/upload_property"
+            style="@style/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/view_property"
+            android:layout_marginTop="@dimen/loginViewsMargin"
+            android:onClick="UploadProperty"
+            android:text="Upload Property"
+            app:initialCornerAngle="27dp"
+            app:spinning_bar_color="#FFF"
+            app:spinning_bar_padding="6dp"
+            app:spinning_bar_width="4dp"
+            tools:ignore="OnClick" />
+
+    </RelativeLayout>
 
 
 

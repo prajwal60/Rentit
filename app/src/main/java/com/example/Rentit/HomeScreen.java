@@ -26,14 +26,6 @@ public class HomeScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-
-//        logoutbutton = (Button) findViewById(R.id.logOutOfTheApp);
-//        logoutbutton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                logOutOfTheApp();
-//            }
-//        });
         extractingData();
 
     }
