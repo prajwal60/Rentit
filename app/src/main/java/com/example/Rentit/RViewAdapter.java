@@ -36,13 +36,10 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolderC
         holder.clicker.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context,DummyPostDetail.class);
-                intent.putExtra("ownername",objectDatabaseModellist.get(holder.getAdapterPosition()).getFullname());
-                intent.putExtra("ownernumber",objectDatabaseModellist.get(holder.getAdapterPosition()).getContactnumber());
-//                intent.putExtra("location",objectDatabaseModellist.get(holder.getAdapterPosition()).getLocation());
-//                intent.putExtra("description",objectDatabaseModellist.get(holder.getAdapterPosition()).getDescription());
-//                intent.putExtra("bookingcode",objectDatabaseModellist.get(holder.getAdapterPosition()).getBooking_code());
-//                intent.putExtra("image",objectDatabaseModellist.get(holder.getAdapterPosition()).getPropertyimage());
+                Intent intent = new Intent(context,AllFunctionSingleData.class);
+                intent.putExtra("owner_name",objectDatabaseModellist.get(holder.getAdapterPosition()).getFullname());
+                intent.putExtra("room_posted_by",objectDatabaseModellist.get(holder.getAdapterPosition()).getRoom_Posted_By());
+                intent.putExtra("unique_code_of_room",objectDatabaseModellist.get(holder.getAdapterPosition()).getGenerated_code());
 
                 context.startActivity(intent);
             }
@@ -58,7 +55,6 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolderC
         holder.Propertyimage.setImageBitmap(objectDatabaseModel.getPropertyimage());
         holder.Propertylocation.setText(objectDatabaseModel.getLocation());
         holder.Propertydecsription.setText(objectDatabaseModel.getDescription());
-        holder.Booking_code.setText(objectDatabaseModel.getBooking_code());
 
     }
 
@@ -69,7 +65,7 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolderC
 
     public static class RViewHolderClass extends RecyclerView.ViewHolder{
 
-        TextView Ownername, Ownercontact, Propertylocation, Propertydecsription, Booking_code;
+        TextView Ownername, Ownercontact, Propertylocation, Propertydecsription;
         Button BookTheRoom;
         ImageView Propertyimage;
         ImageView clicker;
@@ -83,7 +79,6 @@ public class RViewAdapter extends RecyclerView.Adapter<RViewAdapter.RViewHolderC
             Propertyimage = (ImageView) itemView.findViewById(R.id.propertyphoto);
             Propertylocation = (TextView) itemView.findViewById(R.id.propertylocation);
             Propertydecsription = (TextView) itemView.findViewById(R.id.propertydescription);
-            Booking_code = (TextView) itemView.findViewById(R.id.bookingcode);
 
         }
     }

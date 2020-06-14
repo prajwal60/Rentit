@@ -4,15 +4,12 @@ import android.graphics.Bitmap;
 
 public class DatabaseModel {
 
-    String Generated_code,Booking_code,Fullname, Contactnumber, location, Description;
-
-    String Room_Booking_Code, Room_Booked_By;
-
+    String Generated_code, Room_Posted_By, Fullname, Contactnumber, location, Description;
     Bitmap Propertyimage;
 
-    public DatabaseModel( String fullname, String contactnumber, String location, String description, String generated_code, String booking_code, Bitmap propertyimage) {
+    public DatabaseModel( String fullname, String contactnumber, String location, String description, String generated_code, String room_posted_by, Bitmap propertyimage) {
         Generated_code = generated_code;
-        Booking_code = booking_code;
+        Room_Posted_By = room_posted_by;
         Fullname = fullname;
         Contactnumber = contactnumber;
         this.location = location;
@@ -20,26 +17,6 @@ public class DatabaseModel {
         Propertyimage = propertyimage;
     }
 
-    public DatabaseModel(String room_booking_code, String room_Booked_By) {
-        Room_Booking_Code = room_booking_code;
-        Room_Booked_By = room_Booked_By;
-    }
-
-    public String getRoom_Booking_Code() {
-        return Room_Booking_Code;
-    }
-
-    public void setRoom_Booking_Code(String room_Booking_Code) {
-        Room_Booking_Code = room_Booking_Code;
-    }
-
-    public String getRoom_Booked_By() {
-        return Room_Booked_By;
-    }
-
-    public void setRoom_Booked_By(String room_Booked_By) {
-        Room_Booked_By = room_Booked_By;
-    }
 
     public String getGenerated_code() {
         return Generated_code;
@@ -89,11 +66,54 @@ public class DatabaseModel {
         Propertyimage = propertyimage;
     }
 
-    public String getBooking_code() {
-        return Booking_code;
+    public String getRoom_Posted_By() {
+        return Room_Posted_By;
     }
 
-    public void setBooking_code(String booking_code) {
-        Booking_code = booking_code;
+    public void setRoom_Posted_By(String room_Posted_By) {
+        Room_Posted_By = room_Posted_By;
     }
+
+
+    String Received_Owner_Name, Received_Unique_Code_Of_Post, Received_Post_Posted_By, Received_Post_Booked_By;
+
+    public DatabaseModel(String received_Owner_Name, String received_Unique_Code_Of_Post, String received_Post_Posted_By, String received_Post_Booked_By) {
+        Received_Owner_Name = received_Owner_Name;
+        Received_Unique_Code_Of_Post = received_Unique_Code_Of_Post;
+        Received_Post_Posted_By = received_Post_Posted_By;
+        Received_Post_Booked_By = received_Post_Booked_By;
+    }
+
+    public String getReceived_Owner_Name() {
+        return Received_Owner_Name;
+    }
+
+    public void setReceived_Owner_Name(String received_Owner_Name) {
+        Received_Owner_Name = received_Owner_Name;
+    }
+
+    public String getReceived_Unique_Code_Of_Post() {
+        return Received_Unique_Code_Of_Post;
+    }
+
+    public void setReceived_Unique_Code_Of_Post(String received_Unique_Code_Of_Post) {
+        Received_Unique_Code_Of_Post = received_Unique_Code_Of_Post;
+    }
+
+    public String getReceived_Post_Posted_By() {
+        return Received_Post_Posted_By;
+    }
+
+    public void setReceived_Post_Posted_By(String received_Post_Posted_By) {
+        Received_Post_Posted_By = received_Post_Posted_By;
+    }
+
+    public String getReceived_Post_Booked_By() {
+        return Received_Post_Booked_By;
+    }
+
+    public void setReceived_Post_Booked_By(String received_Post_Booked_By) {
+        Received_Post_Booked_By = received_Post_Booked_By;
+    }
+
 }

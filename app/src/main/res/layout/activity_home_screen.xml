@@ -13,29 +13,20 @@
         android:id="@+id/movetoanotheractivity"
         android:gravity="center">
 
-        <Button
-            android:layout_width="180sp"
-            android:layout_height="wrap_content"
+
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+            style="@style/loginButton"
             android:text="Home"
             android:textSize="@dimen/headerTextSize"
             android:textStyle="italic"
+            android:layout_marginLeft="15sp"
+            android:layout_marginRight="15sp"
+            android:layout_width="match_parent"
             android:id="@+id/movetofragment"
             android:onClick="moveToFragment"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            />
+            android:layout_marginTop="7sp"/>
 
-        <Button
-            android:layout_width="180sp"
-            android:layout_height="wrap_content"
-            android:text="options"
-            android:paddingLeft="10sp"
-            android:textSize="@dimen/headerTextSize"
-            android:layout_toRightOf="@+id/movetofragment"
-            android:textStyle="italic"
-            android:id="@+id/movetooptionactivity"
-            android:onClick="moveToAdvancedPage"
-            android:textColor="@color/common_google_signin_btn_text_dark_focused"
-            />
+
 
     </RelativeLayout>
 

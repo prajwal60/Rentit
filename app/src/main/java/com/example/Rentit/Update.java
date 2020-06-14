@@ -15,14 +15,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.IOException;
 
 public class Update extends AppCompatActivity {
 
-    TextView Updateownername, Updateownernumber, Updatelocation, Updatedescription, Confirmcode;
+    TextView Updateownername, Updateownernumber, Updatelocation, Updatedescription;
     ImageView Updatephoto;
     Button Updatechoosephoto;
-    String SUpdateownername, SUpdateownernumber, SUpdatelocation, SUpdatedescription, SConfirmcode;
+    String SUpdateownername, SUpdateownernumber, SUpdatelocation, SUpdatedescription;
 
     DatabaseHandler objectDatabaseHandler;
     RecyclerView objectRecyclerView;
@@ -32,33 +35,26 @@ public class Update extends AppCompatActivity {
     Uri Image_Path;
     Bitmap image_bitmap;
 
-
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
+    String Man_online_now;
+    String Generated_Code_For_Update, Posted_By_For_Update;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update);
 
-        Updateownernumber = (TextView) findViewById(R.id.updateownernumber);
-        Updatedescription = (TextView) findViewById(R.id.updatedescription);
         Updateownername = (TextView) findViewById(R.id.updateownername);
-        Updatelocation = (TextView) findViewById(R.id.updatelocation);
-        Confirmcode = (TextView) findViewById(R.id.matchcode);
+        Updateownernumber = (TextView) findViewById(R.id.updateownernumber);
         Updatephoto = (ImageView) findViewById(R.id.updatephoto);
         Updatechoosephoto = (Button) findViewById(R.id.updatechoosephoto);
+        Updatelocation = (TextView) findViewById(R.id.updatelocation);
+        Updatedescription = (TextView) findViewById(R.id.updatedescription);
+
+        Generated_Code_For_Update = getIntent().getExtras().getString("unique_code_of_room");
+        Posted_By_For_Update = getIntent().getExtras().getString("room_posted_by");
     }
-//
-//
-//
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()){
-//
-//            case R.id.updatechoosephoto:
-//                selectImageFromGallery();
-//                break;
-//        }
-//    }
 
     public void choosePhoto(View view) {
         selectImageFromGallery();
@@ -77,8 +73,8 @@ public class Update extends AppCompatActivity {
             Image_Path = data.getData();
             try {
                 image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),Image_Path);
-
                 Updatephoto.setImageBitmap(image_bitmap);
+
                 Updatephoto.setVisibility(View.VISIBLE);
                 Updateownername.setVisibility(View.VISIBLE);
                 Updateownernumber.setVisibility(View.VISIBLE);
@@ -91,19 +87,23 @@ public class Update extends AppCompatActivity {
     }
 
     public void updateProperty(View view) {
-        SUpdateownernumber = Updateownernumber.getText().toString();
-        SUpdatedescription = Updatedescription.getText().toString();
+
         SUpdateownername = Updateownername.getText().toString();
+        SUpdateownernumber = Updateownernumber.getText().toString();
         SUpdatelocation = Updatelocation.getText().toString();
-        SConfirmcode = Confirmcode.getText().toString();
+        SUpdatedescription = Updatedescription.getText().toString();
 
         if(!SUpdateownername.isEmpty() && !SUpdateownernumber.isEmpty() && Updatephoto.getDrawable()!=null && !SUpdatelocation.isEmpty() && !SUpdatedescription.isEmpty() && image_bitmap!=null){
 
             try {
+                firebaseAuth = FirebaseAuth.getInstance();
+                firebaseUser = firebaseAuth.getCurrentUser();
+                Man_online_now = firebaseUser.getEmail();
+
                 objectRecyclerView = findViewById(R.id.RVdetails);
                 objectDatabaseHandler = new DatabaseHandler(this);
 
-                objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.updateChoosedData(SUpdateownername,SUpdateownernumber,SUpdatelocation,SUpdatedescription,image_bitmap,SConfirmcode),this);
+                objectRViewAdapter = new RViewAdapter(objectDatabaseHandler.updateChoosedData(SUpdateownername,SUpdateownernumber,SUpdatelocation,SUpdatedescription,Generated_Code_For_Update,Posted_By_For_Update,image_bitmap),this);
                 Intent intent = new Intent(Update.this, HomeScreen.class);
                 startActivity(intent);
 
@@ -114,5 +114,4 @@ public class Update extends AppCompatActivity {
             Toast.makeText(this, "Please fill all the blanks", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

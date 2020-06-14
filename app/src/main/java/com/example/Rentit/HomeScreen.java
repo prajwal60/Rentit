@@ -1,6 +1,7 @@
 package com.example.Rentit;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,28 +12,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class HomeScreen extends AppCompatActivity  implements View.OnClickListener  {
+public class HomeScreen extends AppCompatActivity {
 
     DatabaseHandler objectDatabaseHandler;
     RecyclerView objectRecyclerView;
     RViewAdapter objectRViewAdapter;
 
-
-    Button bookroom;
     TextView Entered_Code;
     String CodeInstring;
 
-    TextView name, contact, location, description;
-    String Name, Contact, Location, Description;
+    Button logoutbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
 
+//        logoutbutton = (Button) findViewById(R.id.logOutOfTheApp);
+//        logoutbutton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                logOutOfTheApp();
+//            }
+//        });
         extractingData();
-
-//        bookroom = (Button) findViewById(R.id.bookroom);
-//        bookroom.setOnClickListener(this);
 
     }
 
@@ -75,31 +77,30 @@ public class HomeScreen extends AppCompatActivity  implements View.OnClickListen
         }
     }
 
-    public void deleteThisPost(View view) {
-        Intent jumptodeletepost = new Intent(HomeScreen.this, DeleteProperty.class);
-        startActivity(jumptodeletepost);
-    }
-
-    public void updateThisPost(View view) {
-        Intent jumptoupdatepage = new Intent(HomeScreen.this, Update.class);
-        startActivity(jumptoupdatepage);
-    }
-
-    public void LogOut(View view) {
-        SessionManagement sessionManagement =new SessionManagement(HomeScreen.this);
-        sessionManagement.removeSession();
-        Intent outofthesystem =new Intent(HomeScreen.this,MainActivity.class);
-        startActivity(outofthesystem);
-    }
-
     public void moveToAdvancedPage(View view) {
         Intent jumptoadvancedpage = new Intent(HomeScreen.this, AdvancedPage.class);
         startActivity(jumptoadvancedpage);
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent jumptobookingsection = new Intent(HomeScreen.this, BookRoom.class);
-        startActivity(jumptobookingsection);
+    public void moveToFragment(View view) {
+
+        Intent jumptohomepage = new Intent(HomeScreen.this, ChooseViewOrUpload.class);
+        startActivity(jumptohomepage);
+    }
+//
+//    public void logOutOfTheApp() {
+//        SharedPreferences sharedPreferences = getSharedPreferences("rememberkey",MODE_PRIVATE);
+//        sharedPreferences.edit().clear().commit();
+//        Toast.makeText(HomeScreen.this, "You are logged out", Toast.LENGTH_SHORT).show();
+//        startActivity(new Intent(HomeScreen.this, MainActivity.class));
+//        finish();
+//    }
+
+    public void logOutOfTheApp(View view) {
+        SharedPreferences sharedPreferences = getSharedPreferences("rememberkey",MODE_PRIVATE);
+        sharedPreferences.edit().clear().commit();
+        Toast.makeText(HomeScreen.this, "You are logged out", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(HomeScreen.this, MainActivity.class));
+        finish();
     }
 }

@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -38,6 +39,14 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
 
+        SharedPreferences sharedPreferences =getSharedPreferences("rememberkey",MODE_PRIVATE);
+        String checkeduser = sharedPreferences.getString("key","");
+        if(checkeduser.equals("userisloggedin")){
+
+            Toast.makeText(MainActivity.this, "I remember You", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(MainActivity.this,ChooseViewOrUpload.class));
+
+        }
     }
 
 
@@ -48,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     public void validation(View view) {
         progressBar.setVisibility(View.VISIBLE);
 
-        String USERNAME = username.getText().toString().trim();
+        final String USERNAME = username.getText().toString().trim();
         String PASSWORD = password.getText().toString().trim();
 
         if ((USERNAME.isEmpty()) && (PASSWORD.isEmpty())) {
@@ -69,6 +78,12 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 progressBar.setVisibility(View.GONE);
                                 // Sign in success, update UI with the signed-in user's information
+
+                                SharedPreferences sharedPreferences =getSharedPreferences("rememberkey",MODE_PRIVATE);
+                                SharedPreferences.Editor editor = sharedPreferences.edit();
+                                editor.putString("key","userisloggedin");
+                                editor.apply();
+
                                 Toast.makeText(MainActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(MainActivity.this,ChooseViewOrUpload.class));
 
@@ -90,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
     public void loginBtn (View view){
         validation(view);
     }
-
 
 
 }

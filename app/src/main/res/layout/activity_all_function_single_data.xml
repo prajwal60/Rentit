@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_default"
+    android:orientation="vertical"
+    tools:context=".AllFunctionSingleData">
+
+    <RelativeLayout
+        android:id="@+id/advancebuttons"
+        android:layout_width="wrap_content"
+        android:layout_height="270sp"
+        android:layout_margin="15sp"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/bookingsection"
+        android:layout_marginTop="@dimen/headerTextSize">
+
+        <TextView
+            android:id="@+id/updateanddeletetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/newsMoreTextSize"
+            android:text="You can Update/Delete\n(Secret code is not needed \nor book this room"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textSize="25sp" />
+
+        <RelativeLayout
+            android:id="@+id/updateanddelete"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/updateanddeletetext"
+            android:gravity="center">
+
+            <RelativeLayout
+                android:id="@+id/singleupdateanddelete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                    android:id="@+id/singleupdate"
+                    style="@style/loginButton"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:onClick="updateThisRoomDetail"
+                    android:text="Update" />
+
+                <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                    android:id="@+id/singledelete"
+                    style="@style/loginButton"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="7sp"
+                    android:layout_marginTop="@dimen/loginViewsMargin"
+                    android:layout_toRightOf="@+id/singleupdate"
+                    android:onClick="deleteThisRoomDetail"
+                    android:text="Delete" />
+
+            </RelativeLayout>
+
+            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                android:id="@+id/singlebook"
+                style="@style/loginButton"
+                android:layout_below="@+id/singleupdateanddelete"
+                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="7sp"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:onClick="bookThisRoomDetail"
+                android:text="Book" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

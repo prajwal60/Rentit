@@ -14,6 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.io.IOException;
 
 public class UploadPropertyHere extends AppCompatActivity implements View.OnClickListener {
@@ -22,14 +25,15 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
     ImageView PropertyPhoto;
     Button ChoosePhoto , PostPropertyDetail;
 
-    String SPropertyOwnerName, SPropertyOwnerContact, SPropertyLocation, SPropertyDescription;
+    String SPropertyOwnerName, SPropertyOwnerContact, SPropertyLocation, SPropertyDescription, RoomPostedBy;
     final int Image_Request = 1;
     Uri Image_File_Path;
     Bitmap bitmap;
 
     DatabaseHandler objectDatabaseHandler;
 
-
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
     String Generatedcode , Bookingcode;
 
     @Override
@@ -96,18 +100,21 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
         if(!PropertyOwnerName.getText().toString().isEmpty() && !PropertyOwnerContact.getText().toString().isEmpty() && PropertyPhoto.getDrawable()!=null && !PropertyLocation.getText().toString().isEmpty() && !PropertyDescription.getText().toString().isEmpty() && bitmap!=null){
 
             Generatedcode = objectDatabaseHandler.generateAndCheckCode();
-            Bookingcode = objectDatabaseHandler.generatebookingCode();
+
+            firebaseAuth = FirebaseAuth.getInstance();
+            firebaseUser = firebaseAuth.getCurrentUser();
+            RoomPostedBy = firebaseUser.getEmail();
 
             SPropertyOwnerName = PropertyOwnerName.getText().toString();
             SPropertyOwnerContact = PropertyOwnerContact.getText().toString();
             SPropertyLocation = PropertyLocation.getText().toString();
             SPropertyDescription = PropertyDescription.getText().toString();
 
-            objectDatabaseHandler.storePropertyDetail(new DatabaseModel(SPropertyOwnerName,SPropertyOwnerContact,SPropertyLocation,SPropertyDescription,Generatedcode,Bookingcode,bitmap));
+            objectDatabaseHandler.storePropertyDetail(new DatabaseModel(SPropertyOwnerName,SPropertyOwnerContact,SPropertyLocation,SPropertyDescription,Generatedcode,RoomPostedBy,bitmap));
 
-            Intent jumptodisplaycode = new Intent(this,DisplayCode.class);
-            jumptodisplaycode.putExtra("Code",Generatedcode);
-            startActivity(jumptodisplaycode);
+            Intent jumptohomescreen = new Intent(this,HomeScreen.class);
+            jumptohomescreen.putExtra("Code",Generatedcode);
+            startActivity(jumptohomescreen);
         }else {
             Toast.makeText(this, "Please fill all the blanks", Toast.LENGTH_SHORT).show();
         }

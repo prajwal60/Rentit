@@ -13,9 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeleteProperty"></activity>
+        <activity android:name=".Logout"></activity>
+        <activity android:name=".AllFunctionSingleData" />
         <activity android:name=".DummyPostDetail" />
-        <activity android:name=".BookRoom" />
         <activity android:name=".UploadPropertyHere" />
         <activity android:name=".AdvancedPage" />
         <activity android:name=".Update" />

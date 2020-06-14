@@ -20,9 +20,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static int DATABASE_VERSION = 1;
 
     private static String CREATE_TABLE_SQL_QUERY = "create table property_detail (Owner_name TEXT"
-            + " , Owner_contact TEXT , property_photo BLOB , property_location TEXT, property_description TEXT, unique_code TEXT, booking_code TEXT)";
+            + " , Owner_contact TEXT , property_photo BLOB , property_location TEXT, property_description TEXT, unique_code TEXT, room_posted_by TEXT)";
 
-    private static String CREATE_BOOKING_TABLE_SQL_QUERY = "create table booked_rooms (booking_code_of_room TEXT,  room_booked_by TEXT)";
+    private static String CREATE_BOOKING_TABLE_SQL_QUERY = "create table booked_rooms (Booked_room_owner_name TEXT"
+            +", unique_code_of_room TEXT,  Roomdetail_posted_by TEXT, Room_booked_by TEXT)";
 
     private ByteArrayOutputStream objectByteArrayOutputStream;
     private byte[] ImageInByte;
@@ -68,7 +69,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             objectContentValues.put("property_location", objectDatabaseModel.getLocation());
             objectContentValues.put("property_description", objectDatabaseModel.getDescription());
             objectContentValues.put("unique_code", objectDatabaseModel.getGenerated_code());
-            objectContentValues.put("booking_code",objectDatabaseModel.getBooking_code());
+            objectContentValues.put("room_posted_by",objectDatabaseModel.getRoom_Posted_By());
 
             Long checkifthedatainserted = objectSQLiteDatabase.insert("property_detail", null, objectContentValues);
 
@@ -84,21 +85,24 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         }
 
     }
-    public void storeRoomBookedRecord(String booking_code, String booked_by) {
+    public void storeRoomBookedRecord(DatabaseModel objectDatabaseModel) {
         try {
             SQLiteDatabase objectSQLiteDatabase = getWritableDatabase();
             ContentValues objectContentValues = new ContentValues();
 
-            objectContentValues.put("booking_code_of_room", booking_code);
-            objectContentValues.put("room_booked_by", booked_by);
+            objectContentValues.put("Booked_room_owner_name", objectDatabaseModel.getReceived_Owner_Name());
+            objectContentValues.put("unique_code_of_room", objectDatabaseModel.getReceived_Unique_Code_Of_Post());
+            objectContentValues.put("Roomdetail_posted_by",objectDatabaseModel.getReceived_Post_Posted_By());
+            objectContentValues.put("Room_booked_by",objectDatabaseModel.getReceived_Post_Booked_By());
 
             Long checkifthedatainserted = objectSQLiteDatabase.insert("booked_rooms", null, objectContentValues);
 
             if (checkifthedatainserted != -1) {
-                Toast.makeText(context, "Room Booked", Toast.LENGTH_SHORT).show();
+                extractDataAndImages();
+                Toast.makeText(context, "You booked a room", Toast.LENGTH_SHORT).show();
                 objectSQLiteDatabase.close();
             } else {
-                Toast.makeText(context, "Having some issue, Try gain", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Having some issue, Try again", Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {
@@ -122,10 +126,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     String Location_To_Display = objectCursor.getString(3);
                     String Description_To_Display = objectCursor.getString(4);
                     String Unique_code = objectCursor.getString(5);
-                    String Booking_Code_To_Display = objectCursor.getString(6);
+                    String Room_Posted_By = objectCursor.getString(6);
 
                     Bitmap Image_To_Display = BitmapFactory.decodeByteArray(Image_In_Byte, 0, Image_In_Byte.length);
-                    objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Booking_Code_To_Display, Image_To_Display));
+                    objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Room_Posted_By, Image_To_Display));
 
                 }
                 return objectDatabaseModellist;
@@ -135,11 +139,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 String Location_To_Display = "Null";
                 String Description_To_Display = "Null";
                 String Unique_code = "Null";
-                String Booking_Code_To_Display = "Null";
+                String Room_Posted_By = "Null";
 
                 Toast.makeText(context, "No Rooms to show", Toast.LENGTH_SHORT).show();
 
-                objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code, Booking_Code_To_Display,null));
+                objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code, Room_Posted_By,null));
                 return objectDatabaseModellist;
             }
         } catch (Exception e) {
@@ -192,51 +196,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return str;
     }
 
-
-    public String generatebookingCode() {
-
-        Random r = new Random();
-        int min = 10000;
-        int max = 100000;
-        int res = r.nextInt(max - min) + min;
-        String str = "";
-
-        for (int i = 0; i <= 5; i++) {
-            //checks that the last two digits fall under the ASCII number
-            int remainder = res % 100;
-            if ((remainder >= 63) && (remainder <= 90) || (remainder >= 35) && (remainder <= 38) || (remainder >= 97) && (remainder <= 122)) {
-
-                str = Character.toString((char) remainder) + str;
-            } else {
-
-                Random ren = new Random();
-                int renmin = 49;
-                int renmax = 57;
-                int renres = ren.nextInt(renmax - renmin) + renmin;
-                remainder = (renres - remainder) + remainder;
-                str = Character.toString((char) remainder) + str;
-            }
-            res = (res - (remainder % 10)) / 10;
-        }
-
-        try {
-            SQLiteDatabase objectSQLiteDatabase = getReadableDatabase();
-            ArrayList<DatabaseModel> objectDatabaseModellist = new ArrayList<>();
-
-            Cursor checkcode = objectSQLiteDatabase.rawQuery("select * from booked_rooms where booking_code_of_room ='" + str + "'", null);
-            if (checkcode.getCount() == 0) {
-                return str;
-            } else {
-                generateAndCheckCode();
-            }
-
-        } catch (Exception e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-            return null;
-        }
-        return str;
-    }
-
     public ArrayList<DatabaseModel> searchByCode(String code) {
 
 
@@ -255,10 +214,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     String Location_To_Display = searchcursor.getString(3);
                     String Description_To_Display = searchcursor.getString(4);
                     String Unique_code = searchcursor.getString(5);
-                    String Booking_Code_To_Display = searchcursor.getString(6);
+                    String Room_Posted_By = searchcursor.getString(6);
 
                     Bitmap Image_To_Display = BitmapFactory.decodeByteArray(Image_In_Byte, 0, Image_In_Byte.length);
-                    objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Booking_Code_To_Display, Image_To_Display));
+                    objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Room_Posted_By, Image_To_Display));
 
                 }
                 return objectDatabaseModellist;
@@ -274,7 +233,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return objectDatabaseModellist;
     }
 
-    public ArrayList<DatabaseModel> updateChoosedData(String sUpdateownername, String sUpdateownernumber, String sUpdatelocation, String sUpdatedescription, Bitmap image_bitmap, String sConfirmcode) {
+    public ArrayList<DatabaseModel> updateChoosedData(String sUpdateownername, String sUpdateownernumber, String sUpdatelocation, String sUpdatedescription, String generated_code_for_check, String post_posted_by_for_check, Bitmap image_bitmap) {
 
         ArrayList<DatabaseModel> objectDatabaseModellist = new ArrayList<>();
         try {
@@ -292,18 +251,37 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             objectContentValues.put("property_location", sUpdatelocation);
             objectContentValues.put("property_description", sUpdatedescription);
 
-            String[] whereArgs = {sConfirmcode};
+            String[] whereArgs = {generated_code_for_check,post_posted_by_for_check};
 
-            int count = ObjectSQLiteDatabase.update("property_detail", objectContentValues, "unique_code = ?", whereArgs);
+            int count = ObjectSQLiteDatabase.update("property_detail", objectContentValues, "(unique_code = ? and room_posted_by = ? )", whereArgs);
 
             if (count <= 0) {
                 Toast.makeText(context, "Update UnSuccess", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(context, "Post updated Successfully", Toast.LENGTH_SHORT).show();
+                extractDataAndImages();
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return objectDatabaseModellist;
+    }
 
+    public ArrayList<DatabaseModel> deletePost(String post_posted_by, String unique_code_of_post) {
+
+        ArrayList<DatabaseModel> objectDatabaseModellist = new ArrayList<>();
+        try {
+            SQLiteDatabase objectSQLiteDatabase = getWritableDatabase();
+            String[] whereArgs = {post_posted_by, unique_code_of_post};
+
+            int count = objectSQLiteDatabase.delete("property_detail", "room_posted_by = ? and unique_code = ?", whereArgs);
+            if (count <= 0) {
+                Toast.makeText(context, "Delete UnSuccess", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context, "Post deleted Successfully", Toast.LENGTH_SHORT).show();
                 extractDataAndImages();
 //
-//                Cursor searchcursor = ObjectSQLiteDatabase.rawQuery("select * from property_detail", null);
+//                Cursor searchcursor = objectSQLiteDatabase.rawQuery("select * from property_detail", null);
 //                if (searchcursor.getCount() != 0) {
 //
 //                    while (searchcursor.moveToNext()) {
@@ -313,10 +291,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //                        String Location_To_Display = searchcursor.getString(3);
 //                        String Description_To_Display = searchcursor.getString(4);
 //                        String Unique_code = searchcursor.getString(5);
-//                        String Booking_Code_To_Display = searchcursor.getString(6);
+//                        String Room_Posted_By = searchcursor.getString(6);
 //
 //                        Bitmap Image_To_Display = BitmapFactory.decodeByteArray(Image_In_Byte, 0, Image_In_Byte.length);
-//                        objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Booking_Code_To_Display, Image_To_Display));
+//                        objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Room_Posted_By, Image_To_Display));
 //                    }
 //                } else {
 //                    String Name_To_Display = "Null";
@@ -324,57 +302,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 //                    String Location_To_Display = "Null";
 //                    String Description_To_Display = "Null";
 //                    String Unique_code = "Null";
-//                    String Booking_Code_To_Display ="Null";
+//                    String Room_Posted_By = "Null";
 //
-//                    objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Booking_Code_To_Display, null));
+//                    objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Room_Posted_By, null));
 //                    return objectDatabaseModellist;
 //                }
-            }
-        } catch (Exception e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-        return objectDatabaseModellist;
-    }
-
-    public ArrayList<DatabaseModel> deletePost(String name_of_owner, String code_entered) {
-
-        ArrayList<DatabaseModel> objectDatabaseModellist = new ArrayList<>();
-        try {
-            SQLiteDatabase objectSQLiteDatabase = getWritableDatabase();
-            String[] whereArgs = {name_of_owner, code_entered};
-
-            int count = objectSQLiteDatabase.delete("property_detail", "Owner_name = ? and unique_code = ?", whereArgs);
-            if (count <= 0) {
-                Toast.makeText(context, "Delete UnSuccess", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
-
-                Cursor searchcursor = objectSQLiteDatabase.rawQuery("select * from property_detail", null);
-                if (searchcursor.getCount() != 0) {
-
-                    while (searchcursor.moveToNext()) {
-                        String Name_To_Display = searchcursor.getString(0);
-                        String Number_To_Display = searchcursor.getString(1);
-                        byte[] Image_In_Byte = searchcursor.getBlob(2);
-                        String Location_To_Display = searchcursor.getString(3);
-                        String Description_To_Display = searchcursor.getString(4);
-                        String Unique_code = searchcursor.getString(5);
-                        String Booking_Code_To_Display = searchcursor.getString(6);
-
-                        Bitmap Image_To_Display = BitmapFactory.decodeByteArray(Image_In_Byte, 0, Image_In_Byte.length);
-                        objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Booking_Code_To_Display, Image_To_Display));
-                    }
-                } else {
-                    String Name_To_Display = "Null";
-                    String Number_To_Display = "Null";
-                    String Location_To_Display = "Null";
-                    String Description_To_Display = "Null";
-                    String Unique_code = "Null";
-                    String Booking_Code_To_Display = "Null";
-
-                    objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Booking_Code_To_Display, null));
-                    return objectDatabaseModellist;
-                }
             }
         } catch (Exception e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
