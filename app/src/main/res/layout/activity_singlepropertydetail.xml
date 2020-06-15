@@ -12,17 +12,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10sp"
-            android:layout_marginRight="10sp"
-            android:background="#BEEFF1"
+            android:background="#D3E3E4"
             android:orientation="vertical">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/headerTextSize"
-                android:layout_marginBottom="5sp">
+                android:layout_marginTop="@dimen/headerTextSize">
 
                 <TextView
                     android:id="@+id/posted_by_text"
@@ -47,65 +44,16 @@
 
             </RelativeLayout>
 
-<!--            <RelativeLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center_horizontal"-->
-<!--                android:layout_marginBottom="5sp">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/bookingcodetext"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_gravity="center_horizontal"-->
-<!--                    android:visibility="invisible"-->
-<!--                    android:layout_marginBottom="2dp"-->
-<!--                    android:text="Booking Code :"-->
-<!--                    android:textColor="@android:color/widget_edittext_dark"-->
-<!--                    android:textSize="23sp"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/roompostedby"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:visibility="invisible"-->
-<!--                    android:layout_marginLeft="7sp"-->
-<!--                    android:layout_toRightOf="@+id/bookingcodetext"-->
-<!--                    android:textColor="@android:color/primary_text_light_nodisable"-->
-<!--                    android:textSize="23sp"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--            </RelativeLayout>-->
 
             <ImageView
                 android:id="@+id/propertyphoto"
                 android:layout_width="match_parent"
                 android:layout_height="300sp"
-                android:src="@drawable/ic_search_hero" />
+                android:src="@drawable/ic_search_hero"
+                android:paddingLeft="8sp"
+                android:paddingRight="8sp"
+                />
 
-            <!--            <RelativeLayout-->
-            <!--                android:layout_width="wrap_content"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginLeft="10sp">-->
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/youcancontact"-->
-            <!--                    android:layout_width="wrap_content"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:text="Owner:"-->
-            <!--                    android:textSize="20sp"-->
-            <!--                    android:textStyle="bold" />-->
-
-            <!--                <TextView-->
-            <!--                    android:id="@+id/propertyowner"-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_marginLeft="7sp"-->
-            <!--                    android:layout_toRightOf="@+id/youcancontact"-->
-            <!--                    android:textSize="20sp" />-->
-
-            <!--            </RelativeLayout>-->
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -119,6 +67,7 @@
                     android:layout_height="wrap_content"
                     android:text="Phone Number :"
                     android:textSize="20sp"
+                    android:textColor="@android:color/widget_edittext_dark"
                     android:textStyle="bold" />
 
                 <TextView
@@ -141,6 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Property Location :"
+                    android:textColor="@android:color/widget_edittext_dark"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -163,6 +113,7 @@
                     android:id="@+id/propertydescriptiontext"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@android:color/widget_edittext_dark"
                     android:text="Description :"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -219,8 +170,8 @@
             <!--            </RelativeLayout>-->
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="15sp"
-                android:background="#F0F8F8"
+                android:layout_height="11sp"
+                android:background="#F8F5F8F8"
                 />
 
         </LinearLayout>

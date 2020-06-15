@@ -41,10 +41,6 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_property_here);
 
-//        // get the text from MainActivity
-//        Intent passuserid = getIntent();
-//        Vacant_room_uploaded_by = passuserid.getStringExtra("PASS_USERID");
-
         PropertyOwnerName = (EditText) findViewById(R.id.RoomContactName);
         PropertyOwnerContact = (EditText) findViewById(R.id.RoomContactNumber);
         PropertyPhoto = (ImageView) findViewById(R.id.RoomPhoto);
@@ -56,6 +52,7 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
         ChoosePhoto.setOnClickListener(this);
 
         objectDatabaseHandler = new DatabaseHandler(this);
+
     }
 
     @Override
@@ -99,8 +96,6 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
 
         if(!PropertyOwnerName.getText().toString().isEmpty() && !PropertyOwnerContact.getText().toString().isEmpty() && PropertyPhoto.getDrawable()!=null && !PropertyLocation.getText().toString().isEmpty() && !PropertyDescription.getText().toString().isEmpty() && bitmap!=null){
 
-            Generatedcode = objectDatabaseHandler.generateAndCheckCode();
-
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseUser = firebaseAuth.getCurrentUser();
             RoomPostedBy = firebaseUser.getEmail();
@@ -110,10 +105,12 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
             SPropertyLocation = PropertyLocation.getText().toString();
             SPropertyDescription = PropertyDescription.getText().toString();
 
+            Generatedcode = objectDatabaseHandler.generateAndCheckCode();
+
             objectDatabaseHandler.storePropertyDetail(new DatabaseModel(SPropertyOwnerName,SPropertyOwnerContact,SPropertyLocation,SPropertyDescription,Generatedcode,RoomPostedBy,bitmap));
 
-            Intent jumptohomescreen = new Intent(this,HomeScreen.class);
-            jumptohomescreen.putExtra("Code",Generatedcode);
+            Intent jumptohomescreen = new Intent(this,ShowCode.class);
+            jumptohomescreen.putExtra("showcode",Generatedcode);
             startActivity(jumptohomescreen);
         }else {
             Toast.makeText(this, "Please fill all the blanks", Toast.LENGTH_SHORT).show();

@@ -67,7 +67,7 @@ public class AllFunctionSingleData extends AppCompatActivity {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }else {
-            Toast.makeText(this,"You don't have permission to update this post",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"You don't have permission to delete this post",Toast.LENGTH_LONG).show();
         }
     }
 

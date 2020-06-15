@@ -16,11 +16,14 @@
 
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
             style="@style/loginButton"
-            android:text="Home"
+            android:background="@color/colorPrimary"
+            android:text="View/Upload"
+            android:textColor="@color/black"
             android:textSize="@dimen/headerTextSize"
             android:textStyle="italic"
-            android:layout_marginLeft="15sp"
-            android:layout_marginRight="15sp"
+            android:layout_height="35sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginRight="10sp"
             android:layout_width="match_parent"
             android:id="@+id/movetofragment"
             android:onClick="moveToFragment"
@@ -34,30 +37,32 @@
     <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
         android:id="@+id/search"
         style="@style/loginButton"
-        android:layout_width="80sp"
+        android:layout_width="70sp"
+        android:layout_height="40sp"
         android:layout_below="@id/movetoanotheractivity"
+        android:background="@color/colorPrimary"
         android:layout_alignParentRight="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="3sp"
-        android:layout_marginRight="15sp"
+        android:layout_marginRight="10sp"
         android:gravity="center"
         android:onClick="searchCode"
-        android:paddingRight="@dimen/headerTextSize"
-        android:text="Search" />
+        android:text="search"
+        android:textColor="@color/colorPrimaryDark"/>
 
     <EditText
         android:id="@+id/searchbycode"
         style="@style/modifiedEditText"
-        android:layout_height="57sp"
-        android:layout_marginLeft="15sp"
+        android:layout_height="52sp"
+        android:inputType="text"
+        android:layout_marginLeft="10sp"
         android:layout_below="@+id/movetoanotheractivity"
-        android:layout_marginTop="3sp"
         android:layout_toLeftOf="@+id/search"
         android:gravity="center"
-        android:hint="Search"
-        android:inputType="text"
+        android:hint="showall"
+        android:focusableInTouchMode="true"
         android:maxLines="1"
-        android:textSize="20sp" />
+        android:textSize="17sp" />
 
 
 
@@ -65,6 +70,8 @@
         android:id="@+id/RVdetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10sp"
+        android:layout_marginRight="10sp"
         android:layout_below="@+id/searchbycode"
         >
 

@@ -15,52 +15,50 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Notification extends AppCompatActivity {
-    Button logoutbutton;
+
+    Button viewBooks;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.notification);
 
+//        viewBooks = (Button) findViewById(R.id.view_books);
+//        viewBooks.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent jumptobookeddata = new Intent(getApplicationContext(), BookedData.class);
+//                startActivity(jumptobookeddata);
+//            }
+//        });
 
-    BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
-    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new notification_fragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new notification_fragment()).commit();
 
-}
+    }
+
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                     Fragment selectedFragment = null;
-                    switch (menuItem.getItemId()){
+                    switch (menuItem.getItemId()) {
                         case R.id.nav_home:
-                            selectedFragment = new Fragment();
+                            selectedFragment = new fragment_home();
                             break;
                         case R.id.nav_notification:
-                            selectedFragment = new notification_fragment() ;
+                            selectedFragment = new Fragment();
                             break;
                         case R.id.nav_setting:
-                            selectedFragment = new setting_fragment() ;
+                            selectedFragment = new setting_fragment();
                             break;
 
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                     return true;
                 }
             };
-    public void ViewProperty(View view) {// Yesma naya function hal
-
-        Intent jumptoviewpropertydetails = new Intent(getApplicationContext(),HomeScreen.class );
-        startActivity(jumptoviewpropertydetails);
-    }
-
-    public void UploadProperty(View view) {// Yesma naya function hal
-        Intent jumptouploadpropertydetails= new Intent(this,UploadPropertyHere.class);
-        startActivity(jumptouploadpropertydetails);
-    }
-
-
-
-
 
 }

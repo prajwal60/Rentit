@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ic_home_home"
+    android:background="?android:attr/colorBackground"
     tools:context=".Notification">
 
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_centerHorizontal="true"
-    android:layout_centerVertical="true">
-
-    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-        android:id="@+id/logOutOfTheApp"
-        style="@style/loginButton"
+    <RelativeLayout
+        android:id="@+id/advancebuttons"
         android:layout_width="wrap_content"
-        android:layout_height="86dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="7sp"
-        android:layout_toRightOf="@+id/movetofragment"
-        android:onClick="logOutOfTheApp"
-        android:text="LogOut"
-        android:textSize="@dimen/headerTextSize"
-        android:textStyle="italic"
-        tools:ignore="OnClick" />
+        android:layout_height="270sp"
+        android:layout_margin="15sp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/headerTextSize">
 
-</FrameLayout>
+        <TextView
+            android:id="@+id/updateanddeletetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/newsMoreTextSize"
+            android:text="Double tap the button to\n             LOG OUT \n       from the system"
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textStyle="italic"
+            android:textSize="25sp" />
 
-</LinearLayout>
+        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+            android:id="@+id/logOutOfTheApp"
+            style="@style/loginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="86dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="20sp"
+            android:layout_below="@+id/updateanddeletetext"
+            android:layout_centerHorizontal="true"
+            android:onClick="logOutOfTheApp"
+            android:text="LogOut"
+            android:textSize="@dimen/headerTextSize"
+            android:textStyle="bold"
+            tools:ignore="OnClick" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

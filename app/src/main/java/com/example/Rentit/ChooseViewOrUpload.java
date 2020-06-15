@@ -78,6 +78,12 @@ public class ChooseViewOrUpload extends AppCompatActivity {
         startActivity(new Intent(ChooseViewOrUpload.this, MainActivity.class));
         finish();
     }
+
+    public void viewBooks(View view) {
+
+        Intent jumptobookeddata = new Intent(getApplicationContext(), BookedData.class);
+        startActivity(jumptobookeddata);
+    }
 }
 
 

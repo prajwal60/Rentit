@@ -36,7 +36,6 @@
                     android:layout_height="348dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentRight="true"
-                    android:layout_margin="5dp"
                     android:src="@drawable/ic_home_home" />
 
                 <TextView
@@ -68,6 +67,7 @@
                     android:layout_marginTop="@dimen/loginViewsMargin"
                     android:onClick="ViewProperty"
                     android:text="View property"
+                    android:layout_height="50sp"
                     app:initialCornerAngle="27dp"
                     app:spinning_bar_color="#FFF"
                     app:spinning_bar_padding="6dp"
@@ -80,10 +80,10 @@
                     style="@style/loginButton"
                     android:layout_below="@+id/view_property"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/loginViewsMargin"
                     android:onClick="UploadProperty"
                     android:text="Upload Property"
+                    android:layout_height="50sp"
                     app:initialCornerAngle="27dp"
                     app:spinning_bar_color="#FFF"
                     app:spinning_bar_padding="6dp"

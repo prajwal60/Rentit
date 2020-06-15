@@ -17,7 +17,6 @@ public class DatabaseModel {
         Propertyimage = propertyimage;
     }
 
-
     public String getGenerated_code() {
         return Generated_code;
     }
@@ -115,5 +114,6 @@ public class DatabaseModel {
     public void setReceived_Post_Booked_By(String received_Post_Booked_By) {
         Received_Post_Booked_By = received_Post_Booked_By;
     }
+
 
 }
