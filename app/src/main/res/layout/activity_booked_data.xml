@@ -4,15 +4,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     android:layout_marginTop="5sp"
     android:layout_marginLeft="10sp"
     android:layout_marginRight="10sp"
     tools:context=".BookedData">
 
+=======
+    tools:context=".BookedData">
+
+    <RelativeLayout
+        android:id="@+id/listviewtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="@dimen/newsMoreTextSize"
+        android:layout_marginRight="15sp">
+
+
+        <TextView
+            android:id="@+id/Post_Code_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Room Code"
+            android:textSize="25sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/booked_by_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="Booked By"
+            android:textSize="25sp"
+            android:textStyle="bold"
+
+            />
+
+    </RelativeLayout>
+
+>>>>>>> 48de2057249b3c967f2360880ecf02588c1da595
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10sp"
         android:id="@+id/listview"
+<<<<<<< HEAD
+=======
+        android:layout_below="@+id/listviewtext"
+>>>>>>> 48de2057249b3c967f2360880ecf02588c1da595
         />
 </RelativeLayout>
