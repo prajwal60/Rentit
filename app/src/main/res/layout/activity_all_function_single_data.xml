@@ -14,7 +14,6 @@
         android:layout_height="270sp"
         android:layout_margin="15sp"
         android:layout_centerInParent="true"
-        android:layout_below="@+id/bookingsection"
         android:layout_marginTop="@dimen/headerTextSize">
 
         <TextView

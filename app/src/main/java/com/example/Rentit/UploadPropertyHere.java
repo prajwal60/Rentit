@@ -36,14 +36,12 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
     FirebaseUser firebaseUser;
     String Generatedcode , Bookingcode;
 
+    String MailID, MailSubject, MailText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_property_here);
-
-//        // get the text from MainActivity
-//        Intent passuserid = getIntent();
-//        Vacant_room_uploaded_by = passuserid.getStringExtra("PASS_USERID");
 
         PropertyOwnerName = (EditText) findViewById(R.id.RoomContactName);
         PropertyOwnerContact = (EditText) findViewById(R.id.RoomContactNumber);
@@ -56,6 +54,7 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
         ChoosePhoto.setOnClickListener(this);
 
         objectDatabaseHandler = new DatabaseHandler(this);
+
     }
 
     @Override
@@ -99,8 +98,6 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
 
         if(!PropertyOwnerName.getText().toString().isEmpty() && !PropertyOwnerContact.getText().toString().isEmpty() && PropertyPhoto.getDrawable()!=null && !PropertyLocation.getText().toString().isEmpty() && !PropertyDescription.getText().toString().isEmpty() && bitmap!=null){
 
-            Generatedcode = objectDatabaseHandler.generateAndCheckCode();
-
             firebaseAuth = FirebaseAuth.getInstance();
             firebaseUser = firebaseAuth.getCurrentUser();
             RoomPostedBy = firebaseUser.getEmail();
@@ -110,10 +107,27 @@ public class UploadPropertyHere extends AppCompatActivity implements View.OnClic
             SPropertyLocation = PropertyLocation.getText().toString();
             SPropertyDescription = PropertyDescription.getText().toString();
 
+            Generatedcode = objectDatabaseHandler.generateAndCheckCode();
+
             objectDatabaseHandler.storePropertyDetail(new DatabaseModel(SPropertyOwnerName,SPropertyOwnerContact,SPropertyLocation,SPropertyDescription,Generatedcode,RoomPostedBy,bitmap));
 
-            Intent jumptohomescreen = new Intent(this,HomeScreen.class);
-            jumptohomescreen.putExtra("Code",Generatedcode);
+//            //Mailing section
+//            MailID = firebaseUser.getEmail();
+//            MailSubject = "Are you "+SPropertyOwnerName+" ?\nHere is the unique code for your recently posted Room detail";
+//            MailText = "Your Post detail with the code is:-\n \n \n Owner Name = "+SPropertyOwnerName+"\n Contact Number = "+SPropertyOwnerContact+"\n Room Location = "+SPropertyLocation+"\n Room Description = "+SPropertyDescription+"\n Secret Code = "++"\n \nTake this code safely you might need this in future";
+//
+//            Intent email = new Intent(Intent.ACTION_SEND);
+//            email.putExtra(Intent.EXTRA_EMAIL, new String[]{MailID});
+//            email.putExtra(Intent.EXTRA_SUBJECT, MailSubject);
+//            email.putExtra(Intent.EXTRA_TEXT, MailText);
+//
+//            //need this to prompts email client only
+//            email.setType("message/rfc822");
+//
+//            startActivity(Intent.createChooser(email, "Choose an Email client :"));
+
+            Intent jumptohomescreen = new Intent(this,ShowCode.class);
+            jumptohomescreen.putExtra("showcode",Generatedcode);
             startActivity(jumptohomescreen);
         }else {
             Toast.makeText(this, "Please fill all the blanks", Toast.LENGTH_SHORT).show();

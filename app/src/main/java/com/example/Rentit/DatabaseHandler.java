@@ -87,22 +87,31 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
     public void storeRoomBookedRecord(DatabaseModel objectDatabaseModel) {
         try {
-            SQLiteDatabase objectSQLiteDatabase = getWritableDatabase();
-            ContentValues objectContentValues = new ContentValues();
+            SQLiteDatabase objectSQLiteDatabaseread = getReadableDatabase();
 
-            objectContentValues.put("Booked_room_owner_name", objectDatabaseModel.getReceived_Owner_Name());
-            objectContentValues.put("unique_code_of_room", objectDatabaseModel.getReceived_Unique_Code_Of_Post());
-            objectContentValues.put("Roomdetail_posted_by",objectDatabaseModel.getReceived_Post_Posted_By());
-            objectContentValues.put("Room_booked_by",objectDatabaseModel.getReceived_Post_Booked_By());
+            Cursor searchcursor = objectSQLiteDatabaseread.rawQuery("select * from booked_rooms where unique_code_of_room ='"+objectDatabaseModel.getReceived_Unique_Code_Of_Post()+"' and Room_booked_by ='" + objectDatabaseModel.getReceived_Post_Booked_By() + "'", null);
 
-            Long checkifthedatainserted = objectSQLiteDatabase.insert("booked_rooms", null, objectContentValues);
+            if (searchcursor.getCount() == 0) {
 
-            if (checkifthedatainserted != -1) {
-                extractDataAndImages();
-                Toast.makeText(context, "You booked a room", Toast.LENGTH_SHORT).show();
-                objectSQLiteDatabase.close();
-            } else {
-                Toast.makeText(context, "Having some issue, Try again", Toast.LENGTH_SHORT).show();
+                SQLiteDatabase objectSQLiteDatabase = getWritableDatabase();
+                ContentValues objectContentValues = new ContentValues();
+
+                objectContentValues.put("Booked_room_owner_name", objectDatabaseModel.getReceived_Owner_Name());
+                objectContentValues.put("unique_code_of_room", objectDatabaseModel.getReceived_Unique_Code_Of_Post());
+                objectContentValues.put("Roomdetail_posted_by", objectDatabaseModel.getReceived_Post_Posted_By());
+                objectContentValues.put("Room_booked_by", objectDatabaseModel.getReceived_Post_Booked_By());
+
+                Long checkifthedatainserted = objectSQLiteDatabase.insert("booked_rooms", null, objectContentValues);
+
+                if (checkifthedatainserted != -1) {
+                    extractDataAndImages();
+                    Toast.makeText(context, "You booked a room", Toast.LENGTH_SHORT).show();
+                    objectSQLiteDatabase.close();
+                } else {
+                    Toast.makeText(context, "Having some issue, Try again", Toast.LENGTH_SHORT).show();
+                }
+            }else {
+                Toast.makeText(context, "You have already booked this Room", Toast.LENGTH_SHORT).show();
             }
 
         } catch (Exception e) {
@@ -203,7 +212,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         try {
             SQLiteDatabase objectSQLiteDatabase = getReadableDatabase();
 
-            Cursor searchcursor = objectSQLiteDatabase.rawQuery("select * from property_detail where unique_code ='" + code + "'", null);
+            Cursor searchcursor = objectSQLiteDatabase.rawQuery("select * from property_detail where Owner_name LIKE '%"+code+"%' or Owner_contact LIKE '%"+code+"%' or property_location LIKE '%"+code+"%' or property_description LIKE '%"+code+"%' or unique_code = '"+ code +"'", null);
 //            or Owner_name LIKE '%"+code+"%'
             if (searchcursor.getCount() != 0) {
 
@@ -280,36 +289,40 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } else {
                 Toast.makeText(context, "Post deleted Successfully", Toast.LENGTH_SHORT).show();
                 extractDataAndImages();
-//
-//                Cursor searchcursor = objectSQLiteDatabase.rawQuery("select * from property_detail", null);
-//                if (searchcursor.getCount() != 0) {
-//
-//                    while (searchcursor.moveToNext()) {
-//                        String Name_To_Display = searchcursor.getString(0);
-//                        String Number_To_Display = searchcursor.getString(1);
-//                        byte[] Image_In_Byte = searchcursor.getBlob(2);
-//                        String Location_To_Display = searchcursor.getString(3);
-//                        String Description_To_Display = searchcursor.getString(4);
-//                        String Unique_code = searchcursor.getString(5);
-//                        String Room_Posted_By = searchcursor.getString(6);
-//
-//                        Bitmap Image_To_Display = BitmapFactory.decodeByteArray(Image_In_Byte, 0, Image_In_Byte.length);
-//                        objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Room_Posted_By, Image_To_Display));
-//                    }
-//                } else {
-//                    String Name_To_Display = "Null";
-//                    String Number_To_Display = "Null";
-//                    String Location_To_Display = "Null";
-//                    String Description_To_Display = "Null";
-//                    String Unique_code = "Null";
-//                    String Room_Posted_By = "Null";
-//
-//                    objectDatabaseModellist.add(new DatabaseModel(Name_To_Display, Number_To_Display, Location_To_Display, Description_To_Display, Unique_code,Room_Posted_By, null));
-//                    return objectDatabaseModellist;
-//                }
+
             }
         } catch (Exception e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+        return objectDatabaseModellist;
+    }
+
+    public ArrayList<DatabaseModel> passPostCodeAndBookerName(String Manonlinenow){
+
+        ArrayList<DatabaseModel> objectDatabaseModellist = new ArrayList<>();
+        try {
+            SQLiteDatabase objectSQLiteDatabase = getReadableDatabase();
+
+            Cursor searchcursor = objectSQLiteDatabase.rawQuery("select * from booked_rooms where Roomdetail_posted_by ='" + Manonlinenow + "'", null);
+
+            if (searchcursor.getCount() != 0) {
+
+                while (searchcursor.moveToNext()) {
+                    String Owner_Name_To_Display = searchcursor.getString(0);
+                    String Post_Code_To_Display = searchcursor.getString(1);
+                    String Room_Posted_By_To_Display = searchcursor.getString(2);
+                    String Booked_By_To_Display = searchcursor.getString(3);
+
+                    objectDatabaseModellist.add(new DatabaseModel(Owner_Name_To_Display,Post_Code_To_Display,Room_Posted_By_To_Display,Booked_By_To_Display));
+
+                }
+                return objectDatabaseModellist;
+            } else {
+                Toast.makeText(context, "No book on your post yet", Toast.LENGTH_LONG).show();
+            }
+        } catch (Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+            return null;
         }
         return objectDatabaseModellist;
     }

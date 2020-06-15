@@ -1,49 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?android:attr/colorBackground"
+
     android:orientation="vertical"
     tools:context=".Notification">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="214dp"
-        android:gravity="center">
+        android:id="@+id/advancebuttons"
+        android:layout_width="wrap_content"
+        android:layout_height="270sp"
+        android:layout_margin="15sp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="@dimen/headerTextSize">
+
+        <TextView
+            android:id="@+id/updateanddeletetext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/newsMoreTextSize"
+            android:text="        Press the button to \n            view the list of\n         persons who have\n booked your posted Rooms."
+            android:textColor="@color/design_default_color_on_secondary"
+            android:textStyle="italic"
+            android:textSize="25sp" />
 
         <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-            android:id="@+id/view_property"
+            android:id="@+id/view_books"
             style="@style/loginButton"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="@dimen/loginViewsMargin"
-            android:onClick="ViewProperty"
-            android:text="View property"
+            android:text="View books on my post"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:onClick="viewBooks"
             app:initialCornerAngle="27dp"
+            android:layout_below="@+id/updateanddeletetext"
+            android:layout_centerHorizontal="true"
+            android:layout_height="120sp"
+            android:layout_width="280sp"
             app:spinning_bar_color="#FFF"
             app:spinning_bar_padding="6dp"
             app:spinning_bar_width="4dp"
             tools:ignore="OnClick" />
 
 
-        <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-            android:id="@+id/upload_property"
-            style="@style/loginButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/view_property"
-            android:layout_marginTop="@dimen/loginViewsMargin"
-            android:onClick="UploadProperty"
-            android:text="Upload Property"
-            app:initialCornerAngle="27dp"
-            app:spinning_bar_color="#FFF"
-            app:spinning_bar_padding="6dp"
-            app:spinning_bar_width="4dp"
-            tools:ignore="OnClick" />
 
     </RelativeLayout>
 
 
 
 
-</LinearLayout>
+</RelativeLayout>

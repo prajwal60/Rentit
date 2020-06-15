@@ -21,7 +21,6 @@ public class HomeScreen extends AppCompatActivity {
     TextView Entered_Code;
     String CodeInstring;
 
-    Button logoutbutton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,14 +78,6 @@ public class HomeScreen extends AppCompatActivity {
         Intent jumptohomepage = new Intent(HomeScreen.this, ChooseViewOrUpload.class);
         startActivity(jumptohomepage);
     }
-//
-//    public void logOutOfTheApp() {
-//        SharedPreferences sharedPreferences = getSharedPreferences("rememberkey",MODE_PRIVATE);
-//        sharedPreferences.edit().clear().commit();
-//        Toast.makeText(HomeScreen.this, "You are logged out", Toast.LENGTH_SHORT).show();
-//        startActivity(new Intent(HomeScreen.this, MainActivity.class));
-//        finish();
-//    }
 
     public void logOutOfTheApp(View view) {
         SharedPreferences sharedPreferences = getSharedPreferences("rememberkey",MODE_PRIVATE);
